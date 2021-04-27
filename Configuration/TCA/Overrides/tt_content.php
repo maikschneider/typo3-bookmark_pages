@@ -1,4 +1,12 @@
 <?php
+
+/*
+ * This file is part of the package buepro/bookmark_pages.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 defined('TYPO3') || die('Access denied.');
 
 (function () {
@@ -11,7 +19,7 @@ defined('TYPO3') || die('Access denied.');
         // For TYPO3 < V10
         // @extensionScannerIgnoreLine
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-            'Colorcube.BookmarkPages',
+            'Buepro.BookmarkPages',
             'Bookmarks',
             'Bookmark Pages'
         );

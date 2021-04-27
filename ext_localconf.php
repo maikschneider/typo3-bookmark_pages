@@ -1,4 +1,12 @@
 <?php
+
+/*
+ * This file is part of the package buepro/bookmark_pages.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE file that was distributed with this source code.
+ */
+
 defined('TYPO3') or die('Access denied.');
 
 (function () {
@@ -8,25 +16,25 @@ defined('TYPO3') or die('Access denied.');
         // For TYPO3 < V10
         // @extensionScannerIgnoreLine
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'Colorcube.BookmarkPages',
+            'Buepro.BookmarkPages',
             'Bookmarks',
-            array(
+            [
                 'Bookmarks' => 'index, bookmark, delete, listEntries',
-            ),
+            ],
             // non-cacheable actions
-            array(
+            [
                 'Bookmarks' => 'bookmark, delete, listEntries',
-            )
+            ]
         );
     } else {
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'BookmarkPages',
             'Bookmarks',
             [
-                \Colorcube\BookmarkPages\Controller\BookmarksController::class => 'index, bookmark, delete, listEntries'
+                \Buepro\BookmarkPages\Controller\BookmarksController::class => 'index, bookmark, delete, listEntries'
             ],
             [
-                \Colorcube\BookmarkPages\Controller\BookmarksController::class => 'bookmark, delete, listEntries'
+                \Buepro\BookmarkPages\Controller\BookmarksController::class => 'bookmark, delete, listEntries'
             ]
         );
     }

@@ -19,7 +19,7 @@ you can just issue the following Composer command in your project root directory
 
 .. code-block:: bash
 
-	composer require colorcube/bookmark-pages
+	composer require buepro/bookmark-pages
 
 2. Installation with Extension Manager
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
