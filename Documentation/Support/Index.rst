@@ -13,7 +13,7 @@ So if you have questions or feedback there are several options:
 Bug Tracker
 -----------
 
-For bug reports and feature requests: https://github.com/buepro/bookmark_pages/issues
+For bug reports and feature requests: https://github.com/buepro/typo3-bookmark_pages/issues
 
 Commercial support
 ------------------

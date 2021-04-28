@@ -8,9 +8,9 @@
         "bookmarks"
     ],
     "license": "GPL-2.0-or-later",
-    "homepage": "https://github.com/buepro/bookmark_pages",
+    "homepage": "https://github.com/buepro/typo3-bookmark_pages",
     "support": {
-        "issues": "https://github.com/buepro/bookmark_pages/issues"
+        "issues": "https://github.com/buepro/typo3-bookmark_pages/issues"
     },
     "authors": [
         {
