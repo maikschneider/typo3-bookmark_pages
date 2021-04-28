@@ -1,5 +1,6 @@
 # Folders
 /.github export-ignore
+/Build export-ignore
 
 # Files
 .editorconfig export-ignore
