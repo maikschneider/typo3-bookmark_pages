@@ -9,6 +9,7 @@
 
 namespace Buepro\BookmarkPages\Model;
 
+use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Database\Query\Restriction\FrontendRestrictionContainer;
@@ -22,6 +23,7 @@ class Bookmarks
 
     /**
      * column in db
+     * @var string
      */
     const BOOKMARKS_COLUMN =  'tx_bookmarks_pages';
 
@@ -73,7 +75,7 @@ class Bookmarks
     /**
      * clear all bookmarks
      */
-    public function clearBookmarks()
+    public function clearBookmarks(): void
     {
         $this->bookmarks = [];
         $this->changeFlag = true;
@@ -81,10 +83,8 @@ class Bookmarks
 
     /**
      * Add a bookmark
-     *
-     * @param Bookmark $bookmark
      */
-    public function addBookmark(Bookmark $bookmark)
+    public function addBookmark(Bookmark $bookmark): void
     {
         $this->bookmarks[$bookmark->getId()] = $bookmark;
         $this->changeFlag = true;
@@ -104,7 +104,6 @@ class Bookmarks
     /**
      * Check if a given bookmark is stored already
      *
-     * @param Bookmark $bookmark
      * @return bool
      */
     public function bookmarkExists(Bookmark $bookmark)
@@ -117,7 +116,7 @@ class Bookmarks
      *
      * @param string $id
      */
-    public function removeBookmark($id)
+    public function removeBookmark($id): void
     {
         unset($this->bookmarks[$id]);
         $this->changeFlag = true;
@@ -126,13 +125,14 @@ class Bookmarks
     /**
      * persist bookmarks if needed
      */
-    public function persist()
+    public function persist(): void
     {
         if ($this->changeFlag && is_array($this->getUser()->user) && $this->getUser()->user[$this->getUser()->userid_column]) {
             $bookmarks = [];
             foreach ($this->bookmarks as $bookmark) {
                 $bookmarks[] = $bookmark->toArray();
             }
+
             /*
              * Why xml?
              *
@@ -161,7 +161,7 @@ class Bookmarks
 
     /**
      * Get global frontend user
-     * @return \TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication
+     * @return FrontendUserAuthentication
      */
     protected function getUser()
     {
@@ -174,19 +174,18 @@ class Bookmarks
     private function getAccessibleBookmarks()
     {
         $bookmarks = $this->getBookmarks();
-        if (!$bookmarks) {
+        if ($bookmarks === []) {
             return [];
         }
 
         // Create an array association the page uid with the bookmark id (uid => id)
-        $pageMap = array_flip(array_map(static function ($bookmark) {
-            return (int) $bookmark->getPid();
-        }, $bookmarks));
+        $pageMap = array_flip(array_map(static fn($bookmark): int => (int) $bookmark->getPid(), $bookmarks));
 
         // Get accessible pages
         /** @var QueryBuilder $queryBuilder */
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('pages');
         $queryBuilder->setRestrictions(GeneralUtility::makeInstance(FrontendRestrictionContainer::class));
+
         $pages = $queryBuilder
             ->select('uid')
             ->from('pages')
@@ -221,9 +220,11 @@ class Bookmarks
                 $this->bookmarks[$id] = new Bookmark($bookmark);
             }
         }
+
         if ($bookmarksChanged) {
             $this->persist();
         }
+
         return $this->getBookmarks();
     }
 
@@ -236,6 +237,7 @@ class Bookmarks
         foreach ($this->getAccessibleBookmarks() as $bookmark) {
             $result[$bookmark->getId()] = $bookmark->toArray();
         }
+
         return $result;
     }
 }

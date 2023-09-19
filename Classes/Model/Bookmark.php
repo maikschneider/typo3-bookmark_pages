@@ -1,42 +1,22 @@
 <?php
 
-/*
- * This file is part of the package buepro/bookmark_pages.
- *
- * For the full copyright and license information, please read the
- * LICENSE file that was distributed with this source code.
- */
-
 namespace Buepro\BookmarkPages\Model;
 
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-/**
- *
- */
 class Bookmark
 {
 
-    /**
-     * @var string
-     */
-    protected $id;
-    /**
-     * @var string
-     */
-    protected $title;
-    /**
-     * @var string
-     */
-    protected $url;
-    /**
-     * @var int
-     */
-    protected $pid;
-    /**
-     * @var string
-     */
-    protected $parameter;
+    protected string $id;
+
+    protected string $title;
+
+    protected string $url;
+
+    protected int $pid;
+
+    protected string $parameter;
 
     /**
      * Bookmark constructor.
@@ -47,7 +27,7 @@ class Bookmark
      * @param null $pid page id
      * @param null $parameter
      */
-    public function __construct($url, $title=null, $pid=null, $parameter=null)
+    public function __construct($url, $title = null, $pid = null, $parameter = null)
     {
         if (is_array($url)) {
             $this->id = $url['id'];
@@ -68,9 +48,8 @@ class Bookmark
      * Create bookmark from the current TSFE page
      *
      * @param string url to bookmark, if null TYPO3_REQUEST_URL will be used - which is wrong when we're in ajax context, then we use HTTP_REFERER
-     * @return Bookmark
      */
-    public static function createFromCurrent($url = null)
+    public static function createFromCurrent($url = null): self
     {
         if ($url === null) {
             if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
@@ -99,8 +78,10 @@ class Bookmark
 
          */
 
-        $urlParts = parse_url($url);
-        $parameter = $urlParts['path'] . '?' . $urlParts['query'] . '#' . $urlParts['fragment'];
+        $urlParts = parse_url($url ?? '');
+        $parameter = $urlParts['path'];
+        $parameter .= isset($urlParts['query']) ? '?' . $urlParts['query'] : '';
+        $parameter .= isset($urlParts['fragment']) ? '#' . $urlParts['fragment'] : '';
 
         return new self($url, $title, $pid, $parameter);
 
@@ -121,18 +102,12 @@ class Bookmark
         //        return new self($url, $title, $pid, $parameter);
     }
 
-    /**
-     * @return string
-     */
-    public function getId()
+    public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @param string $id
-     */
-    public function setId($id)
+    public function setId(string $id): void
     {
         $this->id = $id;
     }
@@ -148,7 +123,7 @@ class Bookmark
     /**
      * @param string $title
      */
-    public function setTitle($title)
+    public function setTitle($title): void
     {
         $this->title = $title;
     }
@@ -164,7 +139,7 @@ class Bookmark
     /**
      * @param string $url
      */
-    public function setUrl($url)
+    public function setUrl($url): void
     {
         $this->url = $url;
     }
@@ -180,7 +155,7 @@ class Bookmark
     /**
      * @param int $pid
      */
-    public function setPid($pid)
+    public function setPid($pid): void
     {
         $this->pid = $pid;
     }
@@ -196,7 +171,7 @@ class Bookmark
     /**
      * @param string $parameter
      */
-    public function setParameter($parameter)
+    public function setParameter($parameter): void
     {
         $this->parameter = $parameter;
     }
@@ -204,9 +179,9 @@ class Bookmark
     /**
      * Returns the bookmark data as array
      *
-     * @return array
+     * @return array{id: string, title: string, url: string, pid: int, parameter: string}
      */
-    public function toArray()
+    public function toArray(): array
     {
         return [
             'id' => $this->id,
@@ -219,16 +194,16 @@ class Bookmark
 
     /**
      * Get the current page title
+     *
      * @return string
      */
     protected static function getCurrentPageTitle()
     {
-        return self::getFrontend()->altPageTitle? self::getFrontend()->altPageTitle : self::getFrontend()->page['title'];
+        return self::getFrontend()->altPageTitle ? self::getFrontend()->altPageTitle : self::getFrontend()->page['title'];
     }
 
     /**
-     *
-     * @return \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
+     * @return TypoScriptFrontendController
      */
     protected static function getFrontend()
     {
