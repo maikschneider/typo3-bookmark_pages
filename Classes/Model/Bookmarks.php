@@ -43,7 +43,7 @@ class Bookmarks
     public function __construct()
     {
         // is login user?
-        if (is_array($this->getUser()->user) && $this->getUser()->user[$this->getUser()->userid_column]) {
+        if (is_array($this->getUser()->user) && $this->getUser()->user[$this->getUser()?->userid_column] ?? null) {
             $bookmarks  = $this->getUser()->user[self::BOOKMARKS_COLUMN];
             $bookmarks = (array)GeneralUtility::xml2array($bookmarks);
             foreach ($bookmarks as $bookmark) {
