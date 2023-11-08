@@ -42,6 +42,7 @@ class Bookmarks
      */
     public function __construct()
     {
+        return;
         // is login user?
         if (is_array($this->getUser()->user) && $this->getUser()->user[$this->getUser()?->userid_column] ?? null) {
             $bookmarks  = $this->getUser()->user[self::BOOKMARKS_COLUMN];
