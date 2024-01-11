@@ -42,15 +42,16 @@ class Bookmarks
      */
     public function __construct()
     {
-        return;
         // is login user?
-        if (is_array($this->getUser()->user) && $this->getUser()->user[$this->getUser()?->userid_column] ?? null) {
-            $bookmarks  = $this->getUser()->user[self::BOOKMARKS_COLUMN];
-            $bookmarks = (array)GeneralUtility::xml2array($bookmarks);
-            foreach ($bookmarks as $bookmark) {
-                if (isset($bookmark['id'])) {
-                    $this->bookmarks[$bookmark['id']] = new Bookmark($bookmark);
-                }
+        $feUser = $this->getUser();
+        if (!$feUser instanceof FrontendUserAuthentication || $feUser->user['uid'] ?? false || !isset($feUser->user[self::BOOKMARKS_COLUMN])) {
+            return;
+        }
+        $bookmarks = $feUser->user[self::BOOKMARKS_COLUMN];
+        $bookmarks = (array)GeneralUtility::xml2array($bookmarks);
+        foreach ($bookmarks as $bookmark) {
+            if (isset($bookmark['id'])) {
+                $this->bookmarks[$bookmark['id']] = new Bookmark($bookmark);
             }
         }
     }
