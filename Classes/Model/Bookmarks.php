@@ -44,7 +44,7 @@ class Bookmarks
     {
         // is login user?
         $feUser = $this->getUser();
-        if (!$feUser instanceof FrontendUserAuthentication || $feUser->user['uid'] ?? false || !isset($feUser->user[self::BOOKMARKS_COLUMN])) {
+        if (!$feUser instanceof FrontendUserAuthentication || !($feUser->user['uid'] ?? false) || !isset($feUser->user[self::BOOKMARKS_COLUMN])) {
             return;
         }
         $bookmarks = $feUser->user[self::BOOKMARKS_COLUMN];
