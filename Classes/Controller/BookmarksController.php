@@ -53,6 +53,10 @@ class BookmarksController extends ActionController
 
         $bookmark = Bookmark::createFromCurrent($url);
 
+        if (GeneralUtility::_GP('title')) {
+            $bookmark->setTitle(GeneralUtility::_GP('title'));
+        }
+
         $bookmarks = new Bookmarks();
         $bookmarks->merge($localBookmarks);
         $bookmarks->addBookmark($bookmark);
