@@ -14,15 +14,11 @@ $EM_CONF[$_EXTKEY] = [
     'author' => 'René Fritz, Roman Büchler',
     'author_email' => 'r.fritz@colorcube.de, rb@buechler.pro',
     'author_company' => 'Colorcube, buechler.pro gmbh',
-    'version' => '2.0.1',
+    'version' => '3.0.0',
     'state' => 'stable',
-    'uploadfolder' => 0,
-    'createDirs' => '',
-    'modify_tables' => '',
-    'clearCacheOnLoad' => 1,
     'constraints' => [
         'depends' => [
-            'typo3' => '10.4.14-10.4.99',
+            'typo3' => '10.4.14-11.5.99',
             'typoscript_rendering' => '2.3.1-2.99.99',
         ],
         'conflicts' => [],
