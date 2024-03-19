@@ -6,9 +6,9 @@ defined('TYPO3') || die('Access denied.');
     'BookmarkPages',
     'Bookmarks',
     [
-        \Buepro\BookmarkPages\Controller\BookmarksController::class => 'index, bookmark, delete, listEntries'
+        \Buepro\BookmarkPages\Controller\BookmarksController::class => 'index, bookmark, delete, listEntries',
     ],
     [
-        \Buepro\BookmarkPages\Controller\BookmarksController::class => 'bookmark, delete, listEntries'
+        \Buepro\BookmarkPages\Controller\BookmarksController::class => 'bookmark, delete, listEntries',
     ]
 );

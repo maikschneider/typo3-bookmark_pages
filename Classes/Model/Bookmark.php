@@ -2,12 +2,11 @@
 
 namespace Buepro\BookmarkPages\Model;
 
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 class Bookmark
 {
-
     protected string $id;
 
     protected string $title;

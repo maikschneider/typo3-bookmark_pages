@@ -23,12 +23,12 @@ $EM_CONF[$_EXTKEY] = [
         ],
         'conflicts' => [],
         'suggests' => [
-            'news' => '*'
+            'news' => '*',
         ],
     ],
     'autoload' => [
         'psr-4' => [
-            'Buepro\\BookmarkPages\\' => 'Classes'
-        ]
-    ]
+            'Buepro\\BookmarkPages\\' => 'Classes',
+        ],
+    ],
 ];

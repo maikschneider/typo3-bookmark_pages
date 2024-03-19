@@ -9,18 +9,17 @@
 
 namespace Buepro\BookmarkPages\Model;
 
-use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Database\Query\Restriction\FrontendRestrictionContainer;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 
 /**
  * Provide access to a list of Bookmark
  */
 class Bookmarks
 {
-
     /**
      * column in db
      * @var string
@@ -181,7 +180,7 @@ class Bookmarks
         }
 
         // Create an array association the page uid with the bookmark id (uid => id)
-        $pageMap = array_flip(array_map(static fn($bookmark): int => (int) $bookmark->getPid(), $bookmarks));
+        $pageMap = array_flip(array_map(static fn ($bookmark): int => (int)$bookmark->getPid(), $bookmarks));
 
         // Get accessible pages
         /** @var QueryBuilder $queryBuilder */

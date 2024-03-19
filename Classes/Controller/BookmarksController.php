@@ -9,19 +9,17 @@
 
 namespace Buepro\BookmarkPages\Controller;
 
-use Psr\Http\Message\ResponseInterface;
 use Buepro\BookmarkPages\Model\Bookmark;
 use Buepro\BookmarkPages\Model\Bookmarks;
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Fluid\View\StandaloneView;
 
 /**
  * Plugin controller
  */
 class BookmarksController extends ActionController
 {
-
     /**
      * display bookmarks list
      */
