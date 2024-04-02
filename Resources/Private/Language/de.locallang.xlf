@@ -6,24 +6,31 @@
 		<body>
 			<trans-unit id="yes">
 				<source>Yes</source>
+				<target>Ja</target>
 			</trans-unit>
 			<trans-unit id="default">
 				<source>Default</source>
+				<target>Standard</target>
 			</trans-unit>
 			<trans-unit id="alternative">
 				<source>Alternative</source>
+				<target>Alternativ</target>
 			</trans-unit>
 			<trans-unit id="bookmarkThisPage">
 				<source>Bookmark this page</source>
+				<target>Diese Seite merken</target>
 			</trans-unit>
 			<trans-unit id="ff.isComplementary">
 				<source>Is complementary</source>
+				<target>Ist entgegengesetzt</target>
 			</trans-unit>
 			<trans-unit id="ff.isComplementary.description">
 				<source>In case the plugin is rendered more times on a page this option should be set for all instances except the first one.</source>
+				<target>Falls das Plugin mehrmals auf einer Seite gerendert wird, sollte diese Option für alle Instanzen außer der ersten gesetzt werden.</target>
 			</trans-unit>
 			<trans-unit id="ff.listType">
 				<source>List type</source>
+				<target>List Type</target>
 			</trans-unit>
 		</body>
 	</file>
